@@ -3,11 +3,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 import { Grid, Button } from 'semantic-ui-react';
 import Layout from '../components/Layout';
-import axios from 'axios';
 
-const api = 'https://api-staging.socialidnow.com';
-var request = require('request')
-request.mode= 'no-cors';
 const style = {
   title: {
     fontWeight: 'bolder',
@@ -24,15 +20,27 @@ export default class Home extends React.Component {
     socialid.login.init(465, { loginType: 'event' });
     socialid.login.getConnectionStatus(result => {
       if(result.status === 'success'){
-        fetch(`${api}/v1/marketing/login/connections/${result.data.connection_id}`,{
-          method: 'GET',
+        axios({
+          url: `${api}/v1/marketing/login/connections/${result.data.connection_id}`,
           headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Basic '+btoa('465:f6001a6cfd5f6a23d9546c4b2b5668d334f2320a584f7f7121eb7c85851b1a20')
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+          },
+          auth: {
+            username: 465,
+            password: 'f6001a6cfd5f6a23d9546c4b2b5668d334f2320a584f7f7121eb7c85851b1a20',
           }
-        }).then(d => {
-          console.log(d);
-        })
+        }).then(d=> {console.log(d)})
+
+        // fetch(`${api}/v1/marketing/login/connections/${result.data.connection_id}`,{
+        //   method: 'GET',
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //     'Authorization': 'Basic '+btoa('465:f6001a6cfd5f6a23d9546c4b2b5668d334f2320a584f7f7121eb7c85851b1a20')
+        //   }
+        // }).then(d => {
+        //   console.log(d);
+        // })
       }
 
 
