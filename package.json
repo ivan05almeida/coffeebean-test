@@ -26,11 +26,8 @@
     "style-loader": "^0.20.2"
   },
   "scripts": {
-    "dev": "NODE_ENV=devlopment node server.js",
-    "stage": "NODE_ENV=stage node server.js",
-    "production": "NODE_ENV=production node server.js",
-    "start": "node server.js",
-    "build": "next build"
+    "start": "node server.js -p $PORT",
+    "heroku-postbuild": "next build"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
