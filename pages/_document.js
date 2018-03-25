@@ -16,17 +16,8 @@ export default class MyDocument extends Document {
           <link rel="shortcut icon" type="image/png" href="https://www.coffeebeantech.com/user/themes/cbt/img/favicon/favicon-16x16.png" sizes="16x16"/>
           <style jsx global>{css}
           </style>
-          <script dangerouslySetInnerHTML={{
-      __html: `(function() {
-      var e = document.createElement('script'); e.type = 'text/javascript';
-      e.id = 'socialid_api_script';
-      if (document.location.protocol === 'https:') {
-      e.src = 'https://staging.socialidnow.com/assets/api/socialid.js'; } else {
-      e.src = 'http://staging.socialidnow.com/assets/api/socialid.js'; }
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(e, s); })();`
-      }}
-          />
+          <script type="text/javascript" id="socialid_api_script" src="http://staging.socialidnow.com/assets/api/socialid.js"></script>
+          
         </Head>
         <body>
           <Main />
