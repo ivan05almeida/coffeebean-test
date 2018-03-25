@@ -11,7 +11,7 @@ const style = {
     padding: '0px',
     zIndex: '1',
     width: '100%',
-    fontSize: '16px', 
+    fontSize: '16px',
     color: 'rgba(0,0,0,.54)',
     fontWeight: 400,
     fontStyle: 'normal',

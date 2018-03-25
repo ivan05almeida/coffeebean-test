@@ -1,28 +1,71 @@
 import React from 'react';
 import Link from 'next/link';
-import { Form, Button } from 'semantic-ui-react';
+import Router from 'next/router';
+import { Grid, Button } from 'semantic-ui-react';
 import Layout from '../components/Layout';
-import Test from '../components/test';
+import axios from 'axios';
 
-const styles = {
-  form: {
-    marginLeft: '100px',
-    marginRight: '100px',
-    marginTop: '20px',
-    padding: '10px',
-  },
-  button: {
-    backgroundColor: '#015edb',
-    color: 'white'
+const api = 'https://api-staging.socialidnow.com';
+var request = require('request')
+request.mode= 'no-cors';
+const style = {
+  title: {
+    fontWeight: 'bolder',
+    fontSize: "1.4em"
   }
 };
 
 export default class Home extends React.Component {
+  constructor(props){
+    super(props);
+  }
+
+  componentDidMount() {
+    socialid.login.init(465, { loginType: 'event' });
+    socialid.login.getConnectionStatus(result => {
+      if(result.status === 'success'){
+        fetch(`${api}/v1/marketing/login/connections/${result.data.connection_id}`,{
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic '+btoa('465:f6001a6cfd5f6a23d9546c4b2b5668d334f2320a584f7f7121eb7c85851b1a20')
+          }
+        }).then(d => {
+          console.log(d);
+        })
+      }
+
+
+    })
+
+    socialid.login.renderLoginWidget(
+      'login-c6ab6f67',
+      { providers: ['facebook', 'gplus', 'twitter', 'linkedin'], theme: 'bricks', showSocialIdLink: true }
+    );
+
+    socialid.events.onLoginStart.addHandler((data) => {
+      console.log('Website received onLoginStart: ', data);
+    });
+
+    socialid.events.onLoginSuccess.addHandler(function(data) {
+      console.log(data);
+      Router.push('/account');
+    });
+  }
+
+
   render() {
-    // const { user } = this.state;
+    console.log('props',this.props);
+    console.log('state',this.state);
     return (
       <Layout>
-        <Test />
+        <Grid.Row style={style.title}>
+            Use social login para acessar sua conta
+        </Grid.Row>
+        <Grid.Row>
+          <div id="login-c6ab6f67" style={{ display: 'inline-block', padding: 5 }} />
+          <Button onClick={() => {console.log(this.state);}}/>
+        </Grid.Row>
       </Layout>
     );
   }
