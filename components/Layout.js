@@ -24,7 +24,7 @@ const style = {
 
 const Layout = props => (
   <div style={style.layout}>
-    <Header />
+    <Header isLogged={props.isLogged}/>
       <Grid centered style={style.content}>
         {props.children}
       </Grid>

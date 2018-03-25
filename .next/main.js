@@ -306,6 +306,18 @@ ansiHTML.reset()
 
 /***/ }),
 
+/***/ "./node_modules/ansi-regex/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+module.exports = function () {
+	return /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-PRZcf-nqry=><]/g;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/babel-runtime/core-js/array/from.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4586,7 +4598,7 @@ for (var i = 0; i < DOMIterables.length; i++) {
   };
 
   // amd
-  if ("function" !== "undefined" && __webpack_require__("./node_modules/next/node_modules/webpack/buildin/amd-define.js") !== null && __webpack_require__("./node_modules/next/node_modules/webpack/buildin/amd-options.js")) {
+  if ("function" !== "undefined" && __webpack_require__("./node_modules/webpack/buildin/amd-define.js") !== null && __webpack_require__("./node_modules/webpack/buildin/amd-options.js")) {
     !(__WEBPACK_AMD_DEFINE_RESULT__ = (function() {
       return Levenshtein;
     }).call(exports, __webpack_require__, exports, module),
@@ -4607,7 +4619,7 @@ for (var i = 0; i < DOMIterables.length; i++) {
 }());
 
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/next/node_modules/webpack/buildin/module.js")(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/module.js")(module)))
 
 /***/ }),
 
@@ -7830,7 +7842,7 @@ var PageLoader = function () {
 }();
 
 exports.default = PageLoader;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/next/node_modules/webpack/buildin/module.js")(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/module.js")(module)))
 
 /***/ }),
 
@@ -9255,101 +9267,6 @@ function getURL() {
   return href.substring(origin.length);
 }
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/process/browser.js")))
-
-/***/ }),
-
-/***/ "./node_modules/next/node_modules/ansi-regex/index.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = () => {
-	const pattern = [
-		'[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:[a-zA-Z\\d]*(?:;[a-zA-Z\\d]*)*)?\\u0007)',
-		'(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PRZcf-ntqry=><~]))'
-	].join('|');
-
-	return new RegExp(pattern, 'g');
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/next/node_modules/webpack/buildin/amd-define.js":
-/***/ (function(module, exports) {
-
-module.exports = function() {
-	throw new Error("define cannot be used indirect");
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/next/node_modules/webpack/buildin/amd-options.js":
-/***/ (function(module, exports) {
-
-/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
-module.exports = __webpack_amd_options__;
-
-/* WEBPACK VAR INJECTION */}.call(exports, {}))
-
-/***/ }),
-
-/***/ "./node_modules/next/node_modules/webpack/buildin/global.js":
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-
-/***/ "./node_modules/next/node_modules/webpack/buildin/module.js":
-/***/ (function(module, exports) {
-
-module.exports = function(module) {
-	if(!module.webpackPolyfill) {
-		module.deprecate = function() {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if(!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
 
 /***/ }),
 
@@ -10850,7 +10767,7 @@ module.exports = ReactPropTypesSecret;
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/next/node_modules/webpack/buildin/module.js")(module), __webpack_require__("./node_modules/next/node_modules/webpack/buildin/global.js")))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/module.js")(module), __webpack_require__("./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -12532,7 +12449,7 @@ module.exports = function shallowEqual(objA, objB, compare, compareContext) {
 
 "use strict";
 
-var ansiRegex = __webpack_require__("./node_modules/next/node_modules/ansi-regex/index.js")();
+var ansiRegex = __webpack_require__("./node_modules/ansi-regex/index.js")();
 
 module.exports = function (str) {
 	return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
@@ -13756,7 +13673,7 @@ if (module) {
   };
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, "?autoConnect=false", __webpack_require__("./node_modules/next/node_modules/webpack/buildin/module.js")(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, "?autoConnect=false", __webpack_require__("./node_modules/webpack/buildin/module.js")(module)))
 
 /***/ }),
 
@@ -13908,6 +13825,83 @@ module.exports = function(hash, moduleMap, options) {
       window.location.reload();
     }
   }
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/webpack/buildin/amd-define.js":
+/***/ (function(module, exports) {
+
+module.exports = function() {
+	throw new Error("define cannot be used indirect");
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/webpack/buildin/amd-options.js":
+/***/ (function(module, exports) {
+
+/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
+module.exports = __webpack_amd_options__;
+
+/* WEBPACK VAR INJECTION */}.call(exports, {}))
+
+/***/ }),
+
+/***/ "./node_modules/webpack/buildin/global.js":
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+
+/***/ "./node_modules/webpack/buildin/module.js":
+/***/ (function(module, exports) {
+
+module.exports = function(module) {
+	if(!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
 };
 
 

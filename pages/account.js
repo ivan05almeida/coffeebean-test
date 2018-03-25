@@ -5,8 +5,8 @@ import axios from 'axios';
 import { Grid, Button } from 'semantic-ui-react';
 import Layout from '../components/Layout';
 import UserInfo from '../components/UserInfo';
+import {validateConnection, getUserProfile, loginInfo} from '../lib/api';
 
-const api = 'https://api-staging.socialidnow.com';
 
 export default class Account extends React.Component {
   constructor(props){
@@ -14,39 +14,62 @@ export default class Account extends React.Component {
   }
 
   componentDidMount() {
-    socialid.login.init(465, { loginType: 'event' });
-    socialid.login.getConnectionStatus(result => {
-      if(result.status !== 'success'){
-        Router.push('/')
-      }else{
-        this.renderUser();
-      }
-    })
+      socialid.login.init(465, { loginType: 'event' });
+      socialid.login.getConnectionStatus(result => {
+        if(result.status !== 'success'){
+          Router.push('/')
+        }else{
+          this.renderUser(result.data.connection_id);
+        }
+      })
+
+      socialid.login.renderConnectWidget("socialid_connect_container", {
+       theme: "icons",
+       providers: ["facebook", "gplus", "twitter", "linkedin"],
+       language: "pt_br",
+       showSocialIdLink: true,
+       loadCss: true
+     });
+
+     socialid.events.onConnectSuccess.addHandler((data) => {
+        this.renderUser(this.state && this.state.connection_id);
+     });
+
+     socialid.events.onDisconnectSuccess.addHandler((data) => {
+       this.renderUser(this.state && this.state.connection_id);
+     });
+
+     socialid.events.onLogout.addHandler(() => {
+       this.state.providers.forEach(provider => {
+         socialid.login.disconnect(provider, () => {
+           console.log('Disconnected from',provider);
+         })
+       })
+     })
   }
 
-  renderUser(){
-     socialid.login.getConnectionStatus(result => {
-       this.setState({connection_id: result.data.connection_id});
+  renderUser(connection_id){
+      this.setState({connection_id});
+      validateConnection(connection_id);
 
-       axios.get(`${api}/v1/marketing/login/connections/${result.data.connection_id}`, {
-         auth: {
-              username: '465',
-              password: 'f6001a6cfd5f6a23d9546c4b2b5668d334f2320a584f7f7121eb7c85851b1a20'
-          },
-          crossDomain: true
-       })
-        .then(res => {
-          console.log('validation');
-          console.log(res);
-        })
+      getUserProfile(connection_id).then(connection => {
+        this.setState({ providers: Object.keys(connection.data.profile.providers), user: connection.data.profile})
+      })
+  }
 
-     })
+  logout(providers) {
+    socialid.login.logout(() => {
+      Router.push('/')
+    })
   }
 
   render() {
     return (
-      <Layout>
-        <UserInfo user={this.state && this.state.user && this.state.user.data}/>
+      <Layout isLogged={this.state && this.state.connection_id ? this.logout : null} providers={this.state && this.state.providers}>
+        <Grid.Row>
+          <div id="socialid_connect_container"></div>
+        </Grid.Row>
+        <UserInfo user={this.state && this.state.user} providers={this.state && this.state.providers}/>
       </Layout>
     );
   }
