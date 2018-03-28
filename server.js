@@ -41,9 +41,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', function (req, res) {
-  console.log('session', req.session);
   const { user } = req.session;
-  console.log(user);
   if(user){ res.redirect('/account'); }
   res.render('index');
 });
