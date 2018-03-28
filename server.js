@@ -42,8 +42,9 @@ app.use(function(req, res, next) {
 
 app.get('/', function (req, res) {
   const { user } = req.session;
-  if(user){ res.redirect('/account'); }
-  res.render('index');
+  if(user){ res.redirect('/account'); }else{
+    res.render('index');    
+  }
 });
 
 app.get('/account', function (req, res) {
