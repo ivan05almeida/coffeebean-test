@@ -1,45 +1,22 @@
 {
-  "name": "coffeebean-test",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@zeit/next-css": "^0.1.2",
-    "@zeit/next-less": "^0.1.1",
-    "axios": "^0.18.0",
-    "axios-proxy-fix": "^0.16.3",
-    "css-loader": "^0.28.9",
-    "express": "^4.16.2",
-    "http-proxy-middleware": "^0.18.0",
-    "isomorphic-unfetch": "^2.0.0",
-    "knex": "^0.14.3",
-    "less": "^3.0.1",
-    "mobx": "^3.5.1",
-    "mobx-react": "^4.4.1",
-    "next": "5.0.1-canary.6",
-    "postcss-loader": "^2.1.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-markdown": "^3.2.0",
-    "react-scripts": "1.1.1",
-    "semantic-ui-css": "^2.3.0",
-    "semantic-ui-react": "^0.78.2",
-    "style-loader": "^0.20.2"
-  },
+  "name": "coffeebean2",
+  "version": "1.0.0",
+  "description": "A application developed for a test",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js -p $PORT",
-    "heroku-postbuild": "next build"
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-next-react": "^1.1.1",
-    "babel-preset-react": "^6.24.1",
-    "eslint": "^4.18.0",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jest": "^21.12.2",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0"
+  "author": "Ivan",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.8",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "moment": "^2.21.0",
+    "semantic-ui": "^2.3.1"
   }
 }

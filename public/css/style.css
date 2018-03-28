@@ -1,0 +1,76 @@
+body{
+  background: #eaeaea !important;
+  font-family: "Helvetica",arial,sans-serif;
+}
+
+pre {
+    line-height: 1.2em;
+    font-size: 0.7em !important;
+}
+
+#nav .menu{
+  border-bottom-color: #764710;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-radius: 0px;
+  background: #fff;
+  box-shadow: 0 4px 4px rgba(0,0,0,0.3)
+}
+.title {
+    font-weight: bolder;
+    font-size: 1.4em
+}
+.container {
+  position: absolute;
+  display: block;
+  padding: 0px;
+  width: 100%;
+  font-size: 16px;
+  color: rgba(0,0,0,.54);
+  font-weight: 400;
+  font-style: normal;
+  top: 0;
+}
+.half-divider{
+  display: inline-flex;
+  width: 46%;
+  height: 1px;
+  margin: 12px 0 0 0;
+  background: #d0d0d0;
+}
+
+.footer-logo {
+  width: 1.5%;
+  min-width: 20px;
+}
+
+.logout {
+  position: absolute;
+  right: 0px;
+  margin: 10px !important;
+}
+
+.welcome {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.code-snippet {
+  background-color: #232323;
+  width: 100%;
+  margin: 0px 20px;
+  height: 500px;
+  border-radius: .28571429rem;
+  padding: 40px;
+  text-align: justify;
+  position: relative;
+}
+
+.description span{
+  font-size: 0.65em;
+  text-align: justify;
+}
+
+.extra.content span{
+  font-size: 0.7em;
+}
